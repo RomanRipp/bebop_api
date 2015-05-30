@@ -1,0 +1,27 @@
+<launch>
+	<node pkg="osx_joystick" 
+		type="osx_joystick" 
+		name="JoystickDriver" 
+		args="--num 0 --hz 50"
+		required="true"
+		output="screen"/>
+		
+	<node pkg="joy_to_bebop" 
+		type="joy_to_bebop" 
+		name="JoystickToBebopConverter"
+		required="true"/>
+	
+<!--
+	<node pkg="rosbag" 
+		type="rosbag" 
+		name="BlackBox"
+    	args="record -O log/BlackBox.bag /joy0 /BebopDrone/Controls/EmergencySwitch /BebopDrone/Controls/RPYG /BebopDrone/Controls/TakeOff"/>
+	
+	<node pkg="bebop_api" 
+		type="bebop_api" 
+		name="BebopApi"
+		output="screen"
+		required="true"/>
+-->
+		
+</launch>
