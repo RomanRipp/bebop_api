@@ -99,6 +99,7 @@ set(rosWorkspace_DIR ${workspace_DIR}/rosWorkspace)
 set(bebopApi_DIR ${workspace_DIR}/BebopRebopAPI)
 set(bebopApi_DEPS_DIR ${bebopApi_DIR}/ThirdPartyLibs)
 set(ardrone_SDK_DIR ${bebopApi_DEPS_DIR}/ArDroneSDK3/lib)
+set(bebopApiNode_DIR ${rosWorkspace_DIR}/src/${PROJECT_NAME})
 
 include_directories(${rosWorkspace_DIR}/src)
 include_directories(${bebopApi_DIR}/source)
@@ -121,9 +122,6 @@ file(GLOB_RECURSE bebopApi_SRC
     ${bebopApi_DIR}/source/*.h
     ${bebopApi_DIR}/source/*.cpp
 )
-
-#message("Bebop src: ")
-#message( ${bebopApi_SRC} )
 
 file(GLOB_RECURSE bebopApiNode_SRC
     src/*.h
@@ -189,9 +187,16 @@ find_package(gtest REQUIRED)
 #find_package(gmock REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS}/Headers)
 
+
 file(GLOB_RECURSE bebop_api_test_SRC_DIR
-    ${rosWorkspace_DIR}/src/Test/*.cpp
+    "${bebopApiNode_DIR}/Test/*.cpp"
 )
+
+message("node dir")
+message("${bebopApiNode_DIR}")
+
+message("node src")
+message("${bebop_api_test_SRC_DIR}")
 
 file(GLOB_RECURSE bebop_api_test_LIBS_DIR
     ${GTEST_LIBRARIES}/*.a
